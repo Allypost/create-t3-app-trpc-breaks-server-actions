@@ -21,6 +21,8 @@ export const api = createTRPCProxyClient<AppRouter>({
       headers() {
         const heads = new Map(headers());
         heads.set("x-trpc-source", "rsc");
+        // Fix server actions' revalidate breaking page
+        // heads.delete("content-length");
         return Object.fromEntries(heads);
       },
     }),
